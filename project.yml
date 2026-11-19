@@ -1,0 +1,39 @@
+name: RCOSD
+options:
+  bundleIdPrefix: org.rocs.osda
+  deploymentTarget:
+    iOS: "16.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+targets:
+  RCOSD:
+    type: application
+    platform: iOS
+    sources:
+      - path: RCOSD
+    info:
+      path: RCOSD/Resources/Info.plist
+      properties:
+        CFBundleDisplayName: RC-OSD
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        NSCameraUsageDescription: "The camera is used to photograph your appeal letter."
+        NSPhotoLibraryUsageDescription: "Your photo library is used to attach an appeal letter."
+        NSAppTransportSecurity:
+          NSAllowsLocalNetworking: true
+        API_BASE_URL: "$(API_BASE_URL)"
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: org.rocs.osda.ios
+        TARGETED_DEVICE_FAMILY: "1"
+        GENERATE_INFOPLIST_FILE: NO
+      configs:
+        Debug:
+          API_BASE_URL: "http:/$()/localhost:8080"
+        Release:
+          API_BASE_URL: "https:/$()/rc-osd.tech"
